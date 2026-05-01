@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Payment Successful</title>
+
+<style>
+body {
+  font-family: Arial;
+  text-align: center;
+  padding: 50px;
+  background: #f9f9f9;
+}
+
+.box {
+  background: white;
+  padding: 30px;
+  border-radius: 15px;
+  max-width: 420px;
+  margin: auto;
+}
+
+.btn {
+  padding: 15px 25px;
+  border: none;
+  border-radius: 10px;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.line { background: #00c300; }
+.tg { background: #0088cc; }
+</style>
+
+</head>
+
+<body>
+
+<div class="box">
+
+<h2>🎉 Payment Successful</h2>
+<p>Your membership has been activated</p>
+
+<p style="color:red;">⚠ Please contact us to activate your account</p>
+
+<br>
+
+<button class="btn line" onclick="goLine()">Contact via LINE</button>
+
+<br><br>
+
+<button class="btn tg" onclick="goTelegram()">Contact via Telegram</button>
+
+</div>
+
+<script>
+function goLine() {
+  window.location.href = "https://lin.ee/8LfOIeai";
+}
+
+function goTelegram() {
+  window.location.href = "https://t.me/+EMW1qwCvfaplYjQ9";
+}
+</script>
+
+</body>
+</html>
