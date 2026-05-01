@@ -1,188 +1,173 @@
-<!-- 🔘 ปุ่มเปิด -->
-<button onclick="openPopup()" class="gold-btn">
-  JOIN MEMBERSHIP
-</button>
-
-<!-- 💎 POPUP -->
-<div id="popup" class="popup">
-  <div class="popup-box">
-
-    <!-- ✨ Header -->
-    <h1 class="title">GRAND OPENING</h1>
-    <div class="subtitle">SPECIAL PROMOTION</div>
-
-    <!-- 💰 ราคา -->
-    <div class="price-box">
-      <span class="now">NOW ONLY</span>
-      <div class="price">179<span> THB</span></div>
-      <div class="valid">Valid for 30 Days</div>
-    </div>
-
-    <!-- ⚠️ urgency -->
-    <p class="limit">⚠ Only 30 Members Available</p>
-
-    <!-- 🟢 LINE -->
-    <button class="btn line" onclick="goLine()">
-      Contact via LINE
-    </button>
-
-    <!-- 🔵 Telegram -->
-    <button class="btn tg" onclick="goTelegram()">
-      Contact via Telegram ⭐ (Faster access & images load quicker)
-    </button>
-
-    <!-- 💳 Stripe -->
-    <button class="btn stripe" onclick="goStripe()">
-      Pay with Stripe
-    </button>
-
-    <button class="close" onclick="closePopup()">✕</button>
-
-  </div>
-</div>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Bangkok ParTee</title>
 
 <style>
 body {
-  font-family: 'Arial', sans-serif;
+  margin:0;
+  font-family: Arial, sans-serif;
+  background: url('https://bkkpt.github.io/New-mem-payment/B35F50FC-CD71-4BC9-BC30-12277865EDA9.png') no-repeat center center;
+  background-size: cover;
 }
 
-/* 🔘 Button */
-.gold-btn {
-  background: linear-gradient(135deg, #b9932f, #f5d77a);
-  padding: 15px 30px;
-  border-radius: 30px;
-  border: none;
-  font-weight: bold;
-  cursor: pointer;
-  box-shadow: 0 0 15px rgba(255,215,0,0.6);
-}
-
-/* 🌑 Overlay */
-.popup {
-  display:none;
+/* overlay */
+.overlay {
   position:fixed;
-  top:0; left:0;
-  width:100%; height:100%;
-  background: rgba(0,0,0,0.8);
-  backdrop-filter: blur(8px);
+  width:100%;
+  height:100%;
+  background: rgba(0,0,0,0.75);
 }
 
-/* 💎 Box */
+/* popup */
 .popup-box {
-  background: linear-gradient(145deg, #0d3b2e, #0a2a22);
-  color:white;
-  padding:40px;
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  background: linear-gradient(145deg,#0d3b2e,#0a2a22);
+  padding:30px;
   border-radius:20px;
   text-align:center;
+  width:90%;
   max-width:420px;
-  margin:8% auto;
-  border: 2px solid gold;
-  box-shadow: 0 0 40px rgba(255,215,0,0.4);
-  animation: fadeIn 0.5s ease;
+  border:2px solid gold;
+  box-shadow:0 0 40px gold;
 }
 
-/* ✨ Title */
+/* logo */
+.logo {
+  width:120px;
+  margin-bottom:10px;
+}
+
+/* title */
 .title {
-  font-size:32px;
-  color: gold;
-  text-shadow: 0 0 10px gold;
+  color:gold;
+  font-size:28px;
+  margin-bottom:5px;
 }
 
 .subtitle {
-  margin-bottom:20px;
-}
-
-/* 💰 Price Box */
-.price-box {
-  background: rgba(255,215,0,0.1);
-  padding:20px;
-  border-radius:15px;
+  color:#ddd;
   margin-bottom:15px;
 }
 
-.now {
-  font-size:12px;
-  color:#ffcc00;
+/* plans */
+.plan {
+  background: rgba(255,255,255,0.05);
+  padding:15px;
+  margin:12px 0;
+  border-radius:12px;
+}
+
+/* 🔥 GOLD HIGHLIGHT */
+.plan.gold {
+  background: linear-gradient(145deg,#3a2c00,#1a1400);
+  border:2px solid gold;
+  box-shadow:0 0 25px rgba(255,215,0,0.6);
+}
+
+.popular {
+  border:2px solid gold;
 }
 
 .price {
-  font-size:48px;
-  color: gold;
+  font-size:24px;
+  color:gold;
   font-weight:bold;
-  text-shadow: 0 0 15px gold;
 }
 
-.price span {
-  font-size:18px;
-}
-
-.valid {
-  font-size:12px;
-}
-
-/* ⚠️ */
-.limit {
-  color:#ff4d4d;
-  margin-bottom:15px;
-}
-
-/* 🔘 Buttons */
-.btn {
+/* buttons */
+button {
   width:100%;
-  padding:14px;
+  padding:12px;
   margin-top:10px;
   border:none;
-  border-radius:12px;
+  border-radius:10px;
+  cursor:pointer;
   font-weight:bold;
-  cursor:pointer;
-  transition: 0.3s;
 }
 
-.btn:hover {
-  transform: scale(1.05);
+.pay179 { background:linear-gradient(135deg,#c8a44d,#f5d77a); color:black; }
+.pay399 { background:#ffc107; color:black; }
+.pay999 { background:#dc3545; color:white; }
+
+/* 🔥 limited text */
+.limited {
+  color:#ff4d4d;
+  font-size:13px;
+  margin-top:5px;
 }
 
-/* สี */
-.line { background:#00c300; color:white; }
-.tg { background:#0088cc; color:white; }
-.stripe { background:#635bff; color:white; }
-
-/* ❌ Close */
-.close {
-  margin-top:15px;
-  background:none;
-  color:white;
-  border:none;
-  font-size:18px;
-  cursor:pointer;
-}
-
-/* ✨ Animation */
-@keyframes fadeIn {
-  from { opacity:0; transform: translateY(20px); }
-  to { opacity:1; transform: translateY(0); }
+.limit {
+  color:#ff4d4d;
+  margin-top:12px;
 }
 </style>
 
+</head>
+
+<body>
+
+<div class="overlay">
+
+  <div class="popup-box">
+
+    <!-- LOGO -->
+    <img class="logo" src="https://bkkpt.github.io/New-mem-payment/3D2CC324-3217-48CD-87E5-270CB9BDD5B4.png">
+
+    <div class="title">GRAND OPENING</div>
+    <div class="subtitle">Choose Your Membership</div>
+
+    <!-- 🔥 179 GOLD -->
+    <div class="plan gold">
+      <h3>1 Month</h3>
+      <div class="price">179 THB</div>
+
+      <div class="limited">
+        🔥 Limited Offer — Only 10 Members<br>
+        Valid until 31 May 2026
+      </div>
+
+      <button class="pay179" onclick="pay179()">Pay Now</button>
+    </div>
+
+    <!-- 399 -->
+    <div class="plan popular">
+      <h3>3 Months ⭐</h3>
+      <div class="price">399 THB</div>
+      <button class="pay399" onclick="pay399()">Pay Now</button>
+    </div>
+
+    <!-- 999 -->
+    <div class="plan">
+      <h3>12 Months</h3>
+      <div class="price">999 THB</div>
+      <button class="pay999" onclick="pay999()">Pay Now</button>
+    </div>
+
+    <p class="limit">⚠ Only 30 Members Available</p>
+
+  </div>
+
+</div>
+
 <script>
-function openPopup() {
-  document.getElementById("popup").style.display = "block";
-}
-
-function closePopup() {
-  document.getElementById("popup").style.display = "none";
-}
-
-// 🔥 ใส่ลิงก์จริงของคุณ
-function goLine() {
-  window.location.href = "https://lin.ee/8LfOIeai";
-}
-
-function goTelegram() {
-  window.location.href = "https://t.me/+EMW1qwCvfaplYjQ9";
-}
-
-function goStripe() {
+// ✅ Stripe links (ใส่ให้แล้ว)
+function pay179() {
   window.location.href = "https://buy.stripe.com/00w4gAcb56KlbWq2TCbo403";
 }
+
+function pay399() {
+  window.location.href = "https://buy.stripe.com/9B67sMa2Xb0BgcGam4bo400";
+}
+
+function pay999() {
+  window.location.href = "https://buy.stripe.com/9B67sMa2Xb0BgcGam4bo400";
+}
 </script>
+
+</body>
+</html>
