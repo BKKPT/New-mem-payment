@@ -2,49 +2,70 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bangkok ParTee</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
 <style>
+/* 🔥 RESET */
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin:0;
   font-family: Arial, sans-serif;
-  background: url('https://bkkpt.github.io/New-mem-payment/B35F50FC-CD71-4BC9-BC30-12277865EDA9.png') no-repeat center;
-  background-size: contain;
-  background-color: #000;
+  overflow:hidden; /* ล็อค scroll */
 }
 
+/* 🔥 BLUR BACKGROUND LAYER */
+.bg {
+  position:fixed;
+  width:100%;
+  height:100%;
+  background: url('https://bkkpt.github.io/New-mem-payment/B35F50FC-CD71-4BC9-BC30-12277865EDA9.png') no-repeat center;
+  background-size: cover;
+  filter: blur(12px) brightness(0.7);
+  transform: scale(1.1); /* กันขอบแตก */
+}
+
+/* 🔥 OVERLAY */
 .overlay {
   position:fixed;
   width:100%;
   height:100%;
-  background: rgba(0,0,0,0.35);
-  backdrop-filter: blur(4px);
+  background: rgba(0,0,0,0.25);
 }
 
+/* 🔥 POPUP */
 .popup-box {
   position:absolute;
   top:50%;
   left:50%;
   transform:translate(-50%,-50%);
   background:#fff;
-  padding:25px;
+  padding:20px;
   border-radius:20px;
   text-align:center;
-  width:90%;
+  width:92%;
   max-width:380px;
   box-shadow:0 0 40px rgba(255,215,0,0.6);
 }
 
+/* LOGO */
 .logo {
-  width:90px;
+  width:80px;
   margin-bottom:10px;
 }
 
-.title {
-  color:#c9a63b;
-  font-size:22px;
+/* HEADER */
+.brand {
+  font-size:20px;
   font-weight:bold;
+  color:#c9a63b;
+}
+
+.title {
+  font-size:22px;
+  color:#c9a63b;
 }
 
 .subtitle {
@@ -52,42 +73,57 @@ body {
   margin-bottom:15px;
 }
 
-/* plans */
+/* ANIMATION */
+@keyframes shimmer {
+  0% {background-position:-200%;}
+  100% {background-position:200%;}
+}
+
+.shimmer {
+  background: linear-gradient(90deg,#ffd700,#fff,#ffd700);
+  background-size:200%;
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  animation: shimmer 2s infinite linear;
+}
+
+@keyframes blink {
+  50% {opacity:0.3;}
+}
+
+/* PLANS */
 .plan {
   padding:15px;
   margin:12px 0;
   border-radius:15px;
-  color:white;
 }
 
-/* 179 GOLD */
+/* 179 */
 .gold {
   background: linear-gradient(135deg,#f7d774,#c9a63b);
   color:black;
-  box-shadow:0 0 15px rgba(255,215,0,0.8);
-}
-
-/* 399 GREEN */
-.green {
-  background: linear-gradient(135deg,#1c8f5a,#0f5f3c);
-}
-
-/* 999 BLUE */
-.blue {
-  background: linear-gradient(135deg,#2c6ed5,#163c7a);
-}
-
-.price {
-  font-size:20px;
-  font-weight:bold;
-  margin:5px 0;
 }
 
 .limited {
-  font-size:12px;
-  color:#ff3b3b;
+  font-size:13px;
+  font-weight:bold;
+  color:#005eff;
+  animation: blink 1s infinite;
 }
 
+/* 399 */
+.cream {
+  background:#f5f0e6;
+  color:#3b5d2a;
+}
+
+/* 999 */
+.elite {
+  background:#000;
+  color:#ffd700;
+}
+
+/* BUTTON */
 button {
   width:100%;
   padding:12px;
@@ -98,12 +134,11 @@ button {
   font-weight:bold;
 }
 
-.btn-gold { background:#000; color:#fff; }
-.btn-green { background:#ffd700; color:black; }
-.btn-blue { background:#ffd700; color:black; }
+.btn-dark { background:#000; color:white; }
+.btn-green { background:#2e7d32; color:white; }
+.btn-gold { background:#ffd700; color:black; }
 
 .footer {
-  margin-top:10px;
   font-size:12px;
   color:#999;
 }
@@ -113,40 +148,49 @@ button {
 
 <body>
 
-<div class="overlay">
+<!-- 🔥 BLUR BACKGROUND -->
+<div class="bg"></div>
 
-  <div class="popup-box">
+<!-- 🔥 DARK OVERLAY -->
+<div class="overlay"></div>
 
-    <img class="logo" src="https://bkkpt.github.io/New-mem-payment/3D2CC324-3217-48CD-87E5-270CB9BDD5B4.png">
+<!-- 🔥 POPUP -->
+<div class="popup-box">
 
-    <div class="title">GRAND OPENING</div>
-    <div class="subtitle">Choose Your Membership</div>
+<img class="logo" src="https://bkkpt.github.io/New-mem-payment/3D2CC324-3217-48CD-87E5-270CB9BDD5B4.png">
 
-    <!-- 179 -->
-    <div class="plan gold">
-      <div>1 Month</div>
-      <div class="price">179 THB</div>
-      <div class="limited">🔥 Limited Offer — Only 10 Members<br>Valid until 31 May 2026</div>
-      <button class="btn-gold" onclick="pay179()">Pay Now</button>
-    </div>
+<div class="brand">Bangkok ParTee</div>
+<div class="title">GRAND OPENING</div>
+<div class="subtitle">Choose Your Membership</div>
 
-    <!-- 399 -->
-    <div class="plan green">
-      <div>3 Months ⭐</div>
-      <div class="price">399 THB</div>
-      <button class="btn-green" onclick="pay399()">Pay Now</button>
-    </div>
+<!-- 179 -->
+<div class="plan gold">
+  <div>1 Month</div>
+  <div class="shimmer" style="font-size:20px;font-weight:bold;">179 THB</div>
 
-    <!-- 999 -->
-    <div class="plan blue">
-      <div>12 Months</div>
-      <div class="price">999 THB</div>
-      <button class="btn-blue" onclick="pay999()">Pay Now</button>
-    </div>
-
-    <div class="footer">⚠ Only 30 Members Available</div>
-
+  <div class="limited shimmer">
+    ✨ Limited Offer — Only 10 Members<br>
+    Valid until 31 May 2026
   </div>
+
+  <button class="btn-dark" onclick="pay179()">Pay Now</button>
+</div>
+
+<!-- 399 -->
+<div class="plan cream">
+  <div>3 Months ⭐</div>
+  <div style="font-size:20px;font-weight:bold;">399 THB</div>
+  <button class="btn-green" onclick="pay399()">Pay Now</button>
+</div>
+
+<!-- 999 -->
+<div class="plan elite">
+  <div>1Year~ ELITE 💎</div>
+  <div class="shimmer" style="font-size:20px;font-weight:bold;">999 THB</div>
+  <button class="btn-gold" onclick="pay999()">Pay Now</button>
+</div>
+
+<div class="footer">Slots are filling up fast! Don't miss your chance tonight. 🔥 </div>
 
 </div>
 
